@@ -36,7 +36,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="{{ route('dashboard') }}" class="nav-link active">
+            <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -53,7 +53,7 @@
             </ul> --}}
           </li>
           <li class="nav-item">
-            <a href="{{ route('categories') }}" class="nav-link">
+            <a href="{{ route('categories') }}" class="nav-link {{ Request::is('categories') ? 'active' : '' }}">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Categories
@@ -61,14 +61,31 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="{{ route('addCategory') }}" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+            <a href="{{ route('addCategory') }}" class="nav-link {{ Request::is('categories/add-category') ? 'active' : '' }}">
+              {{-- <i class="nav-icon fas fa-th"></i> --}}
+              <i class="nav-icon fa-solid fa-square-plus"></i>
               <p>
-               Add Categories
+               Add Category
               </p>
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ route('products') }}" class="nav-link {{ Request::is('products') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+               Products
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('addProduct') }}" class="nav-link {{ Request::is('products/add-product') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+               Add Product
+              </p>
+            </a>
+          </li>
+          {{-- <li class="nav-item">
             <a href="pages/widgets.html" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
@@ -669,7 +686,7 @@
               <i class="nav-icon far fa-circle text-info"></i>
               <p>Informational</p>
             </a>
-          </li>
+          </li> --}}
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
