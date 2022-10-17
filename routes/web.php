@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 // Front-end Routes :
 Route::get('/', 'frontend\FrontendController@index')->name('homePage');
 Route::get('/category', 'frontend\FrontendController@category')->name('frontCategory');
+Route::get('/showCategory/{slug}', 'frontend\FrontendController@showCategory')->name('showCategory');
 
 
 Auth::routes();

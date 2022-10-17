@@ -41,11 +41,13 @@
                     <div class="owl-carousel owl-theme">
                         @foreach($trending_categories as $trending_category)
                             <div class="item">
+                                <a href="{{ route('showCategory', $trending_category->slug) }}"><!-- We used 'slug' instead of id because of languages and also the slug is unique. -->
                                 <div class="card">
                                     <img src="{{ asset('assets/uploads/categories/'. $trending_category->image) }}" alt="Product Image">
                                     <h3 class="card-body">{{ $trending_category->name }}</h3>
                                     <p>{{ $trending_category->description }}</p>
                                 </div>
+                                </a>
                             </div>
                         @endforeach
                 </div>
