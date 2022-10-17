@@ -6,28 +6,7 @@
 
 @section('content')
     @include('layouts.frontend.inc.slider')
-
-    {{-- <div class="py-5">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4"></div>
-                <h2 class="col-md-4 mt-5 mb-5 text-center">Features Products</h2>
-                <div class="col-md-4"></div>
-            </div>
-            <div class="row text-center justify-content-center">
-                @foreach($featured_products as $featured_product)
-                        <div class="col-md-4">
-                            <div class="card">
-                                <img src="{{ asset('assets/uploads/products/'. $featured_product->image) }}" class="m-auto w-100" width="250" height="250" alt="">
-                                <h3 class="card-body">{{ $featured_product->name }}</h3>
-                                <p class="card-body">Price : {{ $featured_product->selling_Price }}$</p>
-                            </div>
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div> --}}
-
+    <!-- Featured Products sec-->
     <div class="py-5">
         <div class="container">
             <div class="row">
@@ -43,6 +22,29 @@
                                     <img src="{{ asset('assets/uploads/products/'. $featured_product->image) }}" alt="Product Image">
                                     <h3 class="card-body">{{ $featured_product->name }}</h3>
                                     <p class="card-body">Price : {{ $featured_product->selling_Price }}$ <span class="originalPrice">{{ $featured_product->original_Price }}$</span> </p>
+                                </div>
+                            </div>
+                        @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Trending Categories sec -->
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4 mb-5">
+                    <h2 class="text-center">Trending categories</h2>
+                </div>
+                <div class="col-md-4"></div>
+                    <div class="owl-carousel owl-theme">
+                        @foreach($trending_categories as $trending_category)
+                            <div class="item">
+                                <div class="card">
+                                    <img src="{{ asset('assets/uploads/categories/'. $trending_category->image) }}" alt="Product Image">
+                                    <h3 class="card-body">{{ $trending_category->name }}</h3>
+                                    <p>{{ $trending_category->description }}</p>
                                 </div>
                             </div>
                         @endforeach

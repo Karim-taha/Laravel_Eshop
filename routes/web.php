@@ -18,13 +18,18 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
+
+// Front-end Routes :
 Route::get('/', 'frontend\FrontendController@index')->name('homePage');
+Route::get('/category', 'frontend\FrontendController@category')->name('frontCategory');
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+// Admin Routes :
 Route::middleware(['auth', 'isAdmin'])->group(function(){
     // Route::get('/dashboard', function () {
     //     return view('layouts.admin.index');
