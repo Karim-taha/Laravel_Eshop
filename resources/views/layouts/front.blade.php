@@ -35,6 +35,14 @@
 <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
+<!-- -Google Fonts (Roboto font) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+
+<!-- Css file -->
+<link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
+
 </head>
 <body>
     @include('layouts.frontend.inc.navbar')

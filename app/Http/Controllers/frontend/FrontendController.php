@@ -37,4 +37,16 @@ class FrontendController extends Controller
                 return view('/')->with('status', 'Slug not exists');
             }
     }
+
+
+    public function showProduct($id)
+    {
+
+        $product = Product::findorfail($id);
+        return view('layouts.frontend.showProduct', ['product' => $product]);
+
+    }
+
+
+
 }
