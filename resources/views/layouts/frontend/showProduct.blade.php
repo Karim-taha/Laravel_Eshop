@@ -27,7 +27,7 @@
 
 
 <div style="font-size: 1.5rem" class="bg-warning p-3">Collections / {{ $product->categories->name}} / {{ $product->name }}</div>
-<div class="col-lg-8 card mb-3 shadow p-3 mb-5 bg-white rounded" style="max-width: 80%; margin:auto; margin-top:5rem;">
+<div class="col-lg-8 card mb-3 shadow p-3 mb-5 bg-white rounded product_data" style="max-width: 80%; margin:auto; margin-top:5rem;">
     <div class="row no-gutters">
       <div class="col-md-4">
           <img src="{{ asset('assets/uploads/products/'. $product->image) }}" class="card-img" alt="Product Image">
@@ -44,8 +44,6 @@
                         @endif
                     </div>
                 </div>
-
-
                 <hr style="margin-top: 1rem">
                 <span class="card-text">Original Price : <span class=" text-danger" style="text-decoration: line-through">{{ $product->original_Price }}$</span></span>
                 <span style="margin-left: 1.5rem; font-size:1.2rem" class="card-text">Seeling Price : {{ $product->selling_Price }}$</span>
@@ -56,31 +54,83 @@
                 @else
                 <div class="bg-red" style="width:6rem; padding-left:.5rem">Out of Stock</div>
                 @endif
-                <span class="card-text"><small class="text-muted">Last updated 3 mins ago</small></span>
-                <button class="btn btn-success mt-2 ml-5">Add to wish list <i class="fa-solid fa-heart pl-1"></i></button>
-                <button class="btn btn-primary mt-2 ml-5">Add to cart <i class="fa-solid fa-cart-shopping pl-1"></i></button>
+                <div class="row mt-2">
+                    <div class="col-lg-3">
+                        <input type="hidden" value="{{ $product->id }}" class="prod_id">
+                        <div class="input-group text-center mb-3" style="width: 150px;">
+                            <button class="input-group-text bg-danger decrement-btn"><i class="fa-solid fa-minus"></i></button>
+                            <input type="text" name="quantity" class="form-control text-center qty-input" value="1">
+                            <button class="input-group-text bg-success increment-btn"><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <button class="btn btn-primary addToCartBtn ml-5">Add to cart <i class="fa-solid fa-cart-shopping pl-1"></i></button>
+                        <button class="btn btn-success ml-5">Add to wish list <i class="fa-solid fa-heart pl-1"></i></button>
+                    </div>
+                </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+@endsection
 
 
+@section('scripts')
+        <script>
 
+$(document).ready(function() {
 
+    $('.increment-btn').click(function(e) {
+                    e.preventDefault();
+                    var increment_value = $('.qty-input').val();
+                    var value = parseInt(increment_value, 10);
+                    value = isNaN(value) ? 0 : value;
+                    if(value < 100)
+                    {
+                        value++;
+                        $('.qty-input').val(value);
+                    }
+                });
 
+                $('.decrement-btn').click(function(e) {
+                    e.preventDefault();
+                    var decrement_value = $('.qty-input').val();
+                    var value = parseInt(decrement_value, 10);
+                    value = isNaN(value) ? 0 : value;
+                    if(value > 1)
+                    {
+                        value--;
+                        $('.qty-input').val(value);
+                    }
+                });
 
-{{-- <div class="row mt-5">
-    <div class="col-lg-2 bg-red">1</div>
-        <div class="col-lg-8">
-            <div class="row">
-                <div class="col-lg-2"><img src="{{ asset('assets/uploads/products/'. $product->image) }}" width="300" height="200" alt="Product Image"></div>
-                <div class="col-lg-2">Empty col</div>
-                <div class="col-lg-8">{{ $product->name }}</div>
-        </div>
-    </div>
-    <div class="col-lg-2 bg-red">3</div>
-</div> --}}
+                $('.addToCartBtn').click(function(e) {
+                    e.preventDefault();
 
+                    var prod_id = $(this).closest('.product_data').find('.prod_id').val();
+                    var prod_qty = $(this).closest('.product_data').find('.qty-input').val();
 
+                    $.ajaxSetup({
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }
+                    });
+
+                    $.ajax({
+                        method: "POST",
+                        url: " {{ url('/addtocart') }}",
+                        data: {
+                            'prod_id': prod_id,
+                            'prod_qty': prod_qty,
+                        },
+                        success: function(response){
+                            alert(response.status);
+                        },
+                    });
+
+                });
+
+});
+        </script>
 @endsection
 

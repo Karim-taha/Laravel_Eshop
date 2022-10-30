@@ -31,6 +31,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
+// Add to Cart Route :
+Route::middleware(['auth'])->group(function(){
+    Route::post('/addtocart', 'frontend\CartController@addProduct');
+});
+
 // Admin Routes :
 Route::middleware(['auth', 'isAdmin'])->group(function(){
     // Route::get('/dashboard', function () {
