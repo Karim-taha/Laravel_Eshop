@@ -40,7 +40,7 @@
                     </div>
                     <div class="col-lg-6">
                         @if($product->trending == '1')
-                        <span class="bg-danger mt-1" style="width: 5rem; padding-left:.5rem; padding-right:.5rem; float: right; ">Trending</span>
+                        <span class="bg-success rounded mt-1" style="width: 5rem; padding-left:.5rem; padding-right:.5rem; float: right; ">Trending</span>
                         @endif
                     </div>
                 </div>

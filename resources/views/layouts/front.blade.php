@@ -35,6 +35,7 @@
 <link rel="stylesheet" href="{{ asset('frontend/css/custom.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/owl.carousel.min.css') }}">
 <link rel="stylesheet" href="{{ asset('frontend/css/owl.theme.default.min.css') }}">
+<link rel="stylesheet" href="{{ asset('frontend/css/bootstrap.min.css') }}">
 <!-- -Google Fonts (Roboto font) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,6 +89,8 @@
 <!-- owl carousel-->
 <script src="{{ asset('frontend/js/jquery-3.6.1.min.js') }}"></script>
 <script src="{{ asset('frontend/js/owl.carousel.min.js') }}"></script>
+<script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
+
 
 @yield('scripts')
 

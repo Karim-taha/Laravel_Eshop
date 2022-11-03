@@ -31,10 +31,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-// Add to Cart Route :
+// Cart Routes :
+Route::post('/addtocart', 'frontend\CartController@addProduct');
+Route::delete('/deleteProd/{id}', 'frontend\CartController@destroy')->name('deleteProductFromCart');
 Route::middleware(['auth'])->group(function(){
-    Route::post('/addtocart', 'frontend\CartController@addProduct');
+    Route::get('/cart', 'frontend\CartController@showCart')->name('showcart');
 });
+// Route::delete('/deleteProd/{id}', [App\Http\Controllers\frontend\CartController::class, 'destroy'])->name('deleteProductFromCart');
 
 // Admin Routes :
 Route::middleware(['auth', 'isAdmin'])->group(function(){

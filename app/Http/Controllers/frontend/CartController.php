@@ -35,6 +35,21 @@ class CartController extends Controller
         }else{
             return response()->json(['status' => 'Login to continue']);
         }
-
     }
+
+    public function showCart()
+    {
+        $cartItems = Cart::where('user_id', Auth::id())->get();
+        return view('layouts.frontend.cart', ['cartItems' => $cartItems]);
+    }
+
+    public function destroy($id)
+    {
+        $product = Cart::where('prod_id', $id)->delete();
+        // dd($product);
+        $product->delete();
+            return redirect()->route('showcart')->with('status', 'Product Deleted successfully');
+    }
+
+
 }
